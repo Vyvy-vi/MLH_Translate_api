@@ -1,4 +1,4 @@
-const theKey = "key";
+
 const langs = {
     'english': 'en',
     'afrikaans': 'af',
@@ -19,7 +19,7 @@ const translationInfo = document.createElement('p');
 body.appendChild(translationInfo);
 
 const randomDefinition = () => {
-    fetch(`https://api.mymemory.translated.net/get?q=${translationInfo.textContent.split(' ')[0]}&langpair=en|${langs[translationInfo.textContent.split(' ')[2]]}`)
+    fetch(`https://api.mymemory.translated.net/get?q=${translationInfo.textContent.split(' ')[1]}&langpair=en|${langs[translationInfo.textContent.split(' ')[3]]}`)
     .then(response => {
         return response.json();
     })
@@ -38,7 +38,7 @@ const searchWord = () => {
     try {
         var wordToTranslate = window.prompt("Enter the word that you want to translate: ");
         var toLang = window.prompt("Enter the language you want to translate the text to: ").toLowerCase();
-        translationInfo.textContent = `${wordToTranslate} to ${toLang} :`;
+        translationInfo.textContent = `Converted ${wordToTranslate} to ${toLang}`;
         console.log(wordToTranslate);
         console.log(toLang);
         randomDefinition();
@@ -48,6 +48,23 @@ const searchWord = () => {
 
 }
 
+const listLangs = () => {
+    try {
+        console.log(langs);
+        var listLang = Object.keys(langs).join(', ');
+        console.log(listLang);
+        translationInfo.textContent = `This converter, currently only converts english words to other languages.
+Following languages are supported: ${listLang}\n`;
+    } catch (err){
+        console.error(err);
+    }
+
+}
+
 searchButton.addEventListener('click', function(){
     searchWord();
+})
+
+listButton.addEventListener('click', function(){
+    listLangs();
 })
