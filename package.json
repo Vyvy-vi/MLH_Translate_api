@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Vyvy-vi/MLH_Translate_api#readme",
   "devDependencies": {
-    "gh-pages": "^3.2.1"
+    "gh-pages": "^3.2.3"
   }
 }
